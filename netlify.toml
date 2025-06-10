@@ -6,3 +6,4 @@
   from = "/chat"
   to = "/.netlify/functions/chat"
   status = 200
+  force = true
