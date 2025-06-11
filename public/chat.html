@@ -23,10 +23,16 @@
   const chatDiv = document.getElementById('chat');
 
   async function fetchMsgs() {
-    let res = await fetch('/.netlify/functions/chat'); // GET
-    let lines = await res.json();
-    chatDiv.textContent = lines.join('\n');
+    let res = await fetch('/.netlify/functions/chat');
+  let lines = await res.json();
+
+  const wasAtBottom = chatDiv.scrollTop + chatDiv.clientHeight >= chatDiv.scrollHeight - 5;
+  
+  chatDiv.textContent = lines.join('\n');
+  
+  if (wasAtBottom) {
     chatDiv.scrollTop = chatDiv.scrollHeight;
+  }
   }
 
   document.getElementById('f').addEventListener('submit', async e => {
