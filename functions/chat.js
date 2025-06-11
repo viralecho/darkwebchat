@@ -10,13 +10,28 @@ exports.handler = async (event) => {
 
   try {
     if (event.httpMethod === 'DELETE') {
-      // wipe all messages
-      await supabase
-        .from('messages')
-        .delete()
-        .neq('id', null);    // delete every row
-      return { statusCode: 200, headers, body: JSON.stringify({ status: 'cleared' }) };
-    }
+  console.log('Attempting to delete all messages...');
+  const { error } = await supabase
+    .from('messages')
+    .delete()
+    .neq('id', null);
+
+  if (error) {
+    console.error('Delete failed:', error);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
+
+  return {
+    statusCode: 200,
+    headers,
+    body: JSON.stringify({ status: 'cleared' }),
+  };
+}
+
 
     // existing POST handler…
     if (event.httpMethod === 'POST') {
