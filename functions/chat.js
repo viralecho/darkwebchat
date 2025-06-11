@@ -13,8 +13,7 @@ exports.handler = async (event) => {
   console.log('Attempting to delete all messages...');
   const { error } = await supabase
     .from('messages')
-    .delete()
-    .neq('id', null);
+    .delete();
 
   if (error) {
     console.error('Delete failed:', error);
@@ -31,6 +30,7 @@ exports.handler = async (event) => {
     body: JSON.stringify({ status: 'cleared' }),
   };
 }
+
 
 
     // existing POST handler…
