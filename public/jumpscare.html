@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Think Again...</title>
+  <link rel="icon" type="image/png" href="https://i.imgur.com/F8dTqw3.jpeg">
+  <style> html,body { margin:0; padding:0; overflow:hidden; height:100%; background:#000; } img, audio { display:none; } </style>
+</head>
+<body>
+  <!-- Hidden assets auto-play on load -->
+  <img id="scare-img" src="https://i.pinimg.com/originals/ba/aa/a5/baaaa574ded9e0a53a8f38c0a78eb032.gif" alt="" onload="this.style.display='block';" style="width:100%; height:100%; object-fit:cover;" />
+  <audio id="scare-snd" src="https://www.soundjay.com/human/boat-siren-01.mp3" autoplay></audio>
+  <script>
+    // Show image after a slight delay
+    setTimeout(() => {
+      document.getElementById('scare-img').style.display = 'block';
+      document.getElementById('scare-snd').play();
+    }, 500);
+  </script>
+</body>
+</html>
